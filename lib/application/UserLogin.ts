@@ -1,4 +1,4 @@
-import { UnauthorizedException } from "@storyofams/next-api-decorators";
+import { ConflictException, UnauthorizedException } from "@storyofams/next-api-decorators";
 import { singleton } from "tsyringe";
 
 import UserEntity from "@domain/models/UserEntity";
@@ -27,6 +27,14 @@ class UserLogin {
     if (user === null) {
       throw new UnauthorizedException("Invalid Credentials");
     }
+    const date = new Date();
+    const fiveMinutesAgo = new Date(date.getTime() - (5 * 60000));
+    const trys = (await this.loginIntentsRepository.fetchByUserIdAndCreatedAt(user.id, fiveMinutesAgo));
+    const failedLogin = trys.filter(x => !x.wasSuccess);
+
+    if (failedLogin.length >= 4) {
+      throw new ConflictException("Too many login attempts");
+    }
 
     const loginIntent = LoginIntentEntity.factory(
       this.idsGenerationService.nextId(), {
@@ -36,6 +44,8 @@ class UserLogin {
 
     const isPasswordValid = await user.validatePassword(request.password);
     if (!isPasswordValid) {
+      
+
       await this.loginIntentsRepository.saveNew(loginIntent);
       throw new UnauthorizedException("Invalid Credentials");
     }

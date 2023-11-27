@@ -6,7 +6,7 @@ export interface IInputProps {
   color?: "light" | "dark";
   multiline?: boolean;
   id?: string;
-  type?: "text" | "number" | "password" | "date" | "file";
+  type?: "text" | "number" | "password" | "date" | "file" | "email"
   name?: string;
   value?: string | number;
   disabled?: boolean;

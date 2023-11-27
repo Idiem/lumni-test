@@ -1,0 +1,54 @@
+.root {
+  --input-filled-background-color: var(--color-light);
+  --btn-x-padding: 0.5rem;
+  --input-width: 100%;
+  --input-margin: 1rem 0 0 0;
+  --root-padding: 1rem 0.6rem 0.6rem 0.6rem;
+  --root-text-align: center;
+  --input-container-flex-direction: column;
+  --input-container-align-items: center;
+
+  background: white;
+  padding: var(--root-padding);
+  text-align: var(--root-text-align);
+}
+
+@media (min-width: 1000px) {
+  .root {
+    --btn-x-padding: 1.5em;
+    --input-width: auto;
+    --input-margin: 0;
+    --root-padding: 1rem 1rem 0.6rem 1rem;
+    --root-text-align: left;
+    --input-container-flex-direction: row;
+    --input-container-align-items: flex-end;
+  }
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: var(--input-container-flex-direction);
+  align-items: var(--input-container-align-items);
+  gap: 1rem 0.5rem;
+  text-align: left;
+}
+
+.inputContainer > :nth-child(1) {
+  flex-grow: 1;
+  width: var(--input-width);
+  margin: var(--input-margin);
+}
+
+.inputContainer input {
+  background-color: #EFEFEF;
+}
+
+.inputContainer button {
+  padding-left: var(--btn-x-padding);
+  padding-right: var(--btn-x-padding);
+}
+
+.footer {
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 0.9rem;
+}

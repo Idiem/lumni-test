@@ -6,11 +6,50 @@
 
 @media (min-width: 1000px) {
   .root {
-    --h1-font-size: 1.5rem;
+    --h1-font-size: 2.5rem;
   }
 }
 
 .root h1 {
   margin: 0;
   text-align: center;
+  font-size: var(--h1-font-size);
+  font-family: var(--input-font-family);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.form h2 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.box label {
+  font-size: var(--field-label-font-size);
+  margin: var(--field-label-margin);
+  font-weight: var(--field-label-font-weight);
+  display:inline-block;
+  color: var(--field-label-font-color);
+  letter-spacing: var(--field-label-letter-spacing);
+  line-height: var(--field-label-line-height);
+}
+
+.formBox input {
+  color: black !important;
+}
+
+.submitButton {
+  margin-top: 1rem;
 }
